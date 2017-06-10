@@ -7,6 +7,7 @@ using Autofac.Extensions.DependencyInjection;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
+using FluentValidation.AspNetCore;
 
 namespace Sollicitatiebeheer.Web.Startup {
     /// <summary>
@@ -34,6 +35,17 @@ namespace Sollicitatiebeheer.Web.Startup {
         /// </summary>        
         public static void AddAndConfigureMediatR(this IServiceCollection serviceCollection) {
             serviceCollection.AddMediatR(GetReferencedAssemblies());
+        }
+
+
+        /// <summary>
+        /// Adds and configures FluentValidation for Mvc.
+        /// </summary>                
+        public static IMvcBuilder AddAndConfigureFluentValidation(this IMvcBuilder mvcBuilder) {
+            return mvcBuilder.AddFluentValidation(configuration => {
+                GetReferencedAssemblies().ToList()
+                .ForEach(a => configuration.RegisterValidatorsFromAssembly(a));
+            });
         }
 
 

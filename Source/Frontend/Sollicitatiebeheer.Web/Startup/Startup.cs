@@ -25,7 +25,8 @@ namespace Sollicitatiebeheer.Web.Startup {
         public IServiceProvider ConfigureServices(IServiceCollection services) {
             // Add framework services.
             services.AddMvc()
-                    .AddFeatureFolders();
+                    .AddFeatureFolders()
+                    .AddAndConfigureFluentValidation();
 
             // Add application services.
             services.AddAndConfigureMediatR();

@@ -8,6 +8,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
 using FluentValidation.AspNetCore;
+using Sollicitatiebeheer.Web.Infrastructure.Validation;
 
 namespace Sollicitatiebeheer.Web.Startup {
     /// <summary>
@@ -48,6 +49,14 @@ namespace Sollicitatiebeheer.Web.Startup {
             });
         }
 
+        /// <summary>
+        /// Configures Mvc to use global filters.
+        /// </summary>                
+        public static IMvcBuilder AddAndConfigureFilters(this IMvcBuilder mvcBuilder) {
+            return mvcBuilder.AddMvcOptions(options => {
+                options.Filters.Add(new ValidatorActionFilter());
+            });
+        }
 
         /// <summary>
         /// Helper method to get <see cref="Assembly"/> types from the current application.

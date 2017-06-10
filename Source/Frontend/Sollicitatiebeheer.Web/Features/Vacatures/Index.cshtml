@@ -15,9 +15,9 @@
 
     <hr />
 
-    @if (Model.SortOrder == "asc") {
-        @Html.ActionLink("Sort descending", "Index", new Index.Request { SortOrder = "desc" })
+    @if (Model.SorteerCode == "asc") {
+        @Html.ActionLink("Sort descending", "Index", new Index.Request { SorteerCode = "desc" })
     } else {
-        @Html.ActionLink("Sort ascending", "Index", new Index.Request { SortOrder = "asc" })
+        @Html.ActionLink("Sort ascending", "Index", new Index.Request { SorteerCode = "asc" })
     }
 </div>

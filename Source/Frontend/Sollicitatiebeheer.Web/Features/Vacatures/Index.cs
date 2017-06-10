@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentValidation;
 using MediatR;
 
 namespace Sollicitatiebeheer.Web.Features.Vacatures {
@@ -13,11 +14,11 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures {
                     "Vacature 3"
                 };
 
-                if (String.IsNullOrEmpty(message.SortOrder)) {
-                    message.SortOrder = "asc";
+                if (String.IsNullOrEmpty(message.SorteerCode)) {
+                    message.SorteerCode = "asc";
                 }
 
-                switch (message.SortOrder.ToLower().Trim()) {
+                switch (message.SorteerCode.ToLower().Trim()) {
                     case "asc":
                         vacatures = vacatures.OrderBy(v => v).ToList();
                         break;
@@ -25,7 +26,7 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures {
                         vacatures = vacatures.OrderByDescending(v => v).ToList();
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException(nameof(message.SortOrder), $"Sort order {message.SortOrder} does not exist.");
+                        throw new ArgumentOutOfRangeException(nameof(message.SorteerCode), $"Sort order {message.SorteerCode} does not exist.");
                 }
 
                 return new Response(message, vacatures);
@@ -35,9 +36,28 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures {
         public class Request : IRequest<Response> {
             public Request() { }
             public Request(Request request) {
-                SortOrder = request.SortOrder;
+                SorteerCode = request.SorteerCode;
             }
-            public string SortOrder { get; set; }
+
+            private string _sorteerCode;
+            public string SorteerCode {
+                get => _sorteerCode;
+                set => _sorteerCode = value.Trim().ToLower();
+            }
+
+            public class Validator : AbstractValidator<Request> {
+                public Validator() {
+                    RuleFor(r => r.SorteerCode)
+                        .NotEmpty()
+                        .Must(EenGeldigeSorteerCodeZijn)
+                        .WithMessage("Ongeldige sorteercode.");
+                }
+
+                private readonly string[] _geldigeSorteerCodes = { "asc", "desc" };
+                public bool EenGeldigeSorteerCodeZijn(string sorteerCode) {
+                    return _geldigeSorteerCodes.Contains(sorteerCode);
+                }
+            }
         }
 
         public class Response : Request {

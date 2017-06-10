@@ -10,7 +10,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Sollicitatiebeheer.Web.Startup {
     public class Startup {
-        public Startup(IHostingEnvironment env) {
+        private ILoggerFactory LoggerFactory { get; }
+
+        public IConfigurationRoot Configuration { get; }
+
+        public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory) {
+            LoggerFactory = loggerFactory;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -19,15 +25,13 @@ namespace Sollicitatiebeheer.Web.Startup {
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services) {
             // Add framework services.
             services.AddMvc()
                     .AddFeatureFolders()
                     .AddAndConfigureFluentValidation()
-                    .AddAndConfigureFilters();
+                    .AddAndConfigureFilters(LoggerFactory);
 
             // Add application services.
             services.AddAndConfigureMediatR();

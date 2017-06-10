@@ -1,10 +1,19 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace Sollicitatiebeheer.Web.Infrastructure.Validation {
     public class ValidatorActionFilter : IActionFilter {
+        private readonly ILogger<ValidatorActionFilter> _logger;
+
+        public ValidatorActionFilter(ILogger<ValidatorActionFilter> logger) {
+            _logger = logger;
+        }
+
         public void OnActionExecuting(ActionExecutingContext context) {
             var controller = context.Controller as Controller;
 
@@ -14,9 +23,9 @@ namespace Sollicitatiebeheer.Web.Infrastructure.Validation {
             if (controller.ViewData.ModelState.IsValid)
                 return;
 
-            if (controller.HttpContext.Request.Method == "GET") {
-                context.Result = new StatusCodeResult((int)HttpStatusCode.BadRequest);
-            } else {
+            try {
+                _logger.LogError($"Error occured during request '{context.HttpContext.Request.GetEncodedUrl()}'.");
+
                 var result = new ContentResult();
                 var content = JsonConvert.SerializeObject(
                     controller.ViewData.ModelState,
@@ -28,6 +37,9 @@ namespace Sollicitatiebeheer.Web.Infrastructure.Validation {
 
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 context.Result = result;
+            } catch (Exception ex) {
+                _logger.LogError($"Error occured during processing error for request '{context.HttpContext.Request.GetEncodedUrl()}'.");
+                context.Result = new StatusCodeResult((int)HttpStatusCode.BadRequest);
             }
         }
 

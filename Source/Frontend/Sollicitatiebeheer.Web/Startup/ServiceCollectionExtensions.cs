@@ -8,6 +8,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Logging;
 using Sollicitatiebeheer.Web.Infrastructure.Validation;
 
 namespace Sollicitatiebeheer.Web.Startup {
@@ -52,9 +53,9 @@ namespace Sollicitatiebeheer.Web.Startup {
         /// <summary>
         /// Configures Mvc to use global filters.
         /// </summary>                
-        public static IMvcBuilder AddAndConfigureFilters(this IMvcBuilder mvcBuilder) {
+        public static IMvcBuilder AddAndConfigureFilters(this IMvcBuilder mvcBuilder, ILoggerFactory loggerFactory) {
             return mvcBuilder.AddMvcOptions(options => {
-                options.Filters.Add(new ValidatorActionFilter());
+                options.Filters.Add(new ValidatorActionFilter(loggerFactory.CreateLogger<ValidatorActionFilter>()));
             });
         }
 

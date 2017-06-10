@@ -34,7 +34,9 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures {
         }
 
         public class Request : IRequest<Response> {
-            public Request() { }
+            public Request() {
+                SorteerCode = "asc";
+            }
             public Request(Request request) {
                 SorteerCode = request.SorteerCode;
             }

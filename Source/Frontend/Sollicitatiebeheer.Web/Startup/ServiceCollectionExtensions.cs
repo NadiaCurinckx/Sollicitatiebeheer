@@ -18,6 +18,9 @@ namespace Sollicitatiebeheer.Web.Startup {
         /// </summary>        
         public static IServiceProvider AddAndConfigureAutofac(this IServiceCollection serviceCollection) {
             var containerBuilder = new ContainerBuilder();
+
+            // ref: http://docs.autofac.org/en/latest/register/scanning.html#scanning-for-modules
+            containerBuilder.RegisterAssemblyModules(GetReferencedAssemblies());
             containerBuilder.Populate(serviceCollection);
 
             var container = containerBuilder.Build();
@@ -33,12 +36,16 @@ namespace Sollicitatiebeheer.Web.Startup {
             serviceCollection.AddMediatR(GetReferencedAssemblies());
         }
 
+
+        /// <summary>
+        /// Helper method to get <see cref="Assembly"/> types from the current application.
+        /// </summary>        
         private static Assembly[] GetReferencedAssemblies() {
             var assemblies = new List<Assembly>();
             var dependencies = DependencyContext.Default.RuntimeLibraries;
 
             foreach (var library in dependencies) {
-                if (IsCandidateCompilationLibrary(library)) {
+                if (DoesNameContains(nameof(Sollicitatiebeheer), library)) {
                     var assembly = Assembly.Load(new AssemblyName(library.Name));
                     assemblies.Add(assembly);
                 }
@@ -49,9 +56,12 @@ namespace Sollicitatiebeheer.Web.Startup {
             return assemblies.ToArray();
         }
 
-        private static bool IsCandidateCompilationLibrary(RuntimeLibrary library) {
-            return library.Name == nameof(Sollicitatiebeheer)
-                   || library.Dependencies.Any(d => d.Name.StartsWith(nameof(Sollicitatiebeheer)));
+        /// <summary>
+        /// Helper method to filter on a given expected name.
+        /// </summary>
+        private static bool DoesNameContains(string expectedName, RuntimeLibrary library) {
+            return library.Name == expectedName
+                   || library.Dependencies.Any(d => d.Name.StartsWith(expectedName));
         }
     }
 }

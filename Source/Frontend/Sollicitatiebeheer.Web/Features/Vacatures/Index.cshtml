@@ -1,4 +1,6 @@
-﻿@model Sollicitatiebeheer.Web.Features.Vacatures.Index.Response
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@using Sollicitatiebeheer.Web.Features.Vacatures
+@model Index.Response
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -10,4 +12,12 @@
             <li>@vacature</li>
         }
     </ul>
+
+    <hr />
+
+    @if (Model.SortOrder == "asc") {
+        @Html.ActionLink("Sort descending", "Index", new Index.Request { SortOrder = "desc" })
+    } else {
+        @Html.ActionLink("Sort ascending", "Index", new Index.Request { SortOrder = "asc" })
+    }
 </div>

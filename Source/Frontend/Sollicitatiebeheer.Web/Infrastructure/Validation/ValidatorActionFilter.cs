@@ -26,16 +26,14 @@ namespace Sollicitatiebeheer.Web.Infrastructure.Validation {
             try {
                 _logger.LogError($"Error occured during request '{context.HttpContext.Request.GetEncodedUrl()}'.");
 
-                var result = new ContentResult();
-                var content = JsonConvert.SerializeObject(
-                    controller.ViewData.ModelState,
-                    new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }
-                );
+                var result = new ViewResult {
+                    ViewName = "_Error",
+                    StatusCode = (int)HttpStatusCode.BadRequest,
+                    ViewData = controller.ViewData,
+                    TempData = controller.TempData
+                };
 
-                result.Content = content;
-                result.ContentType = "application/json";
-
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                context.HttpContext.Response.StatusCode = (int)result.StatusCode;
                 context.Result = result;
             } catch (Exception ex) {
                 _logger.LogError($"Error occured during processing error for request '{context.HttpContext.Request.GetEncodedUrl()}'.");

@@ -1,0 +1,13 @@
+﻿@model Sollicitatiebeheer.Web.Features.Vacatures.Index.Response
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <h3>Vacatures</h3>
+    <ul>
+        @foreach (var vacature in Model.Vacatures) {
+            <li>@vacature</li>
+        }
+    </ul>
+</div>

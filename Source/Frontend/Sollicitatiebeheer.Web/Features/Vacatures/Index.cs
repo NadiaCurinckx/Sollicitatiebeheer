@@ -12,11 +12,7 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures {
             public Handler(ISollicitatiebeheerContext db) : base(db) { }
 
             public override Response Handle(Request message) {
-                var vacatures = new List<string> {
-                    "Vacature 1",
-                    "Vacature 2",
-                    "Vacature 3"
-                };
+                var vacatures = _db.Vacatures.Select(v => v.Naam).ToList();
 
                 switch (message.SorteerCode.ToLower().Trim()) {
                     case "asc":

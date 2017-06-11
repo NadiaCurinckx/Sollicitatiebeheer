@@ -1,6 +1,7 @@
 ﻿using Sollicitatiebeheer.Model.Vacatures;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Sollicitatiebeheer.Data.EFCore.Infrastructure.Extensions;
 
 namespace Sollicitatiebeheer.Data.EFCore {
     public class SollicitatiebeheerContext : DbContext, ISollicitatiebeheerContext {
@@ -13,6 +14,10 @@ namespace Sollicitatiebeheer.Data.EFCore {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Vacature>(e => {
+                e.Property(p => p.Id).HasDefaultValueSequentialIdSql();
+            });
         }
 
         int ISollicitatiebeheerContext.SaveChanges() {

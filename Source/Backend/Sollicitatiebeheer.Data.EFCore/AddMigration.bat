@@ -1,1 +1,1 @@
-dotnet ef migrations add InitialCreate;
+dotnet ef migrations add %1

@@ -16,3 +16,4 @@ Aanmaken, opvolgen en werken met data rond sollicitaties.
    SUCCESS: Specified value was saved.
    ```
    OR alternatively read more info at https://andrewlock.net/how-to-set-the-hosting-environment-in-asp-net-core/
+3. Restart the application pool, or restart Visual Studio when developping with IISExpress (or another webserver), so it can consume the newly set environment variables.

@@ -15,3 +15,4 @@ Aanmaken, opvolgen en werken met data rond sollicitaties.
    >setx SOLLICITATIEBEHEER_ConnectionStrings:Sollicitatiebeheer "Your value" /M
    SUCCESS: Specified value was saved.
    ```
+   OR alternatively read more info at https://andrewlock.net/how-to-set-the-hosting-environment-in-asp-net-core/

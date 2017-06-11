@@ -14,17 +14,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{BC2B42
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{91B9AACF-0123-4999-959F-1600F954AE96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sollicitatiebeheer.Web", "Frontend\Sollicitatiebeheer.Web\Sollicitatiebeheer.Web.csproj", "{F8FA0668-6D1F-4DB0-AB0F-EE395C3CABEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sollicitatiebeheer.Web", "Frontend\Sollicitatiebeheer.Web\Sollicitatiebeheer.Web.csproj", "{F8FA0668-6D1F-4DB0-AB0F-EE395C3CABEC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{0A6E66AE-5532-4FDD-B522-19BEE1C01173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sollicitatiebeheer.Data.EFCore", "Backend\Sollicitatiebeheer.Data.EFCore\Sollicitatiebeheer.Data.EFCore.csproj", "{5081DA61-68EF-4C96-9AAE-A4471732015F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sollicitatiebeheer.Data.EFCore", "Backend\Sollicitatiebeheer.Data.EFCore\Sollicitatiebeheer.Data.EFCore.csproj", "{5081DA61-68EF-4C96-9AAE-A4471732015F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sollicitatiebeheer.Model", "Backend\Sollicitatiebeheer.Model\Sollicitatiebeheer.Model.csproj", "{B7B04500-CD02-4197-827B-610BD8A68190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sollicitatiebeheer.Model", "Backend\Sollicitatiebeheer.Model\Sollicitatiebeheer.Model.csproj", "{B7B04500-CD02-4197-827B-610BD8A68190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sollicitatiebeheer.Model.Tests", "Sollicitatiebeheer.Model.Tests\Sollicitatiebeheer.Model.Tests.csproj", "{B659909B-EABD-4AA5-9ED5-93C75104266F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp", "Backend\Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp\Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp.csproj", "{E2E4B7A8-4332-47B4-BC34-ADCD9715B590}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp", "Backend\Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp\Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp.csproj", "{E2E4B7A8-4332-47B4-BC34-ADCD9715B590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sollicitatiebeheer.Model.Tests", "Backend\Sollicitatiebeheer.Model.Tests\Sollicitatiebeheer.Model.Tests.csproj", "{8E3F8BDD-FEE6-469C-8DE0-E5CEAF22FF1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,14 +44,14 @@ Global
 		{B7B04500-CD02-4197-827B-610BD8A68190}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7B04500-CD02-4197-827B-610BD8A68190}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7B04500-CD02-4197-827B-610BD8A68190}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B659909B-EABD-4AA5-9ED5-93C75104266F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B659909B-EABD-4AA5-9ED5-93C75104266F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B659909B-EABD-4AA5-9ED5-93C75104266F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B659909B-EABD-4AA5-9ED5-93C75104266F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2E4B7A8-4332-47B4-BC34-ADCD9715B590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2E4B7A8-4332-47B4-BC34-ADCD9715B590}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2E4B7A8-4332-47B4-BC34-ADCD9715B590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2E4B7A8-4332-47B4-BC34-ADCD9715B590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E3F8BDD-FEE6-469C-8DE0-E5CEAF22FF1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E3F8BDD-FEE6-469C-8DE0-E5CEAF22FF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E3F8BDD-FEE6-469C-8DE0-E5CEAF22FF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E3F8BDD-FEE6-469C-8DE0-E5CEAF22FF1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,7 +62,7 @@ Global
 		{0A6E66AE-5532-4FDD-B522-19BEE1C01173} = {BC2B42B5-3A13-44B5-A2CF-389F2C9AB90F}
 		{5081DA61-68EF-4C96-9AAE-A4471732015F} = {0A6E66AE-5532-4FDD-B522-19BEE1C01173}
 		{B7B04500-CD02-4197-827B-610BD8A68190} = {0A6E66AE-5532-4FDD-B522-19BEE1C01173}
-		{B659909B-EABD-4AA5-9ED5-93C75104266F} = {0A6E66AE-5532-4FDD-B522-19BEE1C01173}
 		{E2E4B7A8-4332-47B4-BC34-ADCD9715B590} = {0A6E66AE-5532-4FDD-B522-19BEE1C01173}
+		{8E3F8BDD-FEE6-469C-8DE0-E5CEAF22FF1E} = {0A6E66AE-5532-4FDD-B522-19BEE1C01173}
 	EndGlobalSection
 EndGlobal

@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentValidation;
 using MediatR;
+using Sollicitatiebeheer.Data.EFCore;
 
 namespace Sollicitatiebeheer.Web.Features.Vacatures {
     public class Index {
         public class Handler : IRequestHandler<Request, Response> {
+            private readonly ISollicitatiebeheerContext _db;
+
+            public Handler(ISollicitatiebeheerContext db) {
+                _db = db;
+            }
+
             public Response Handle(Request message) {
                 var vacatures = new List<string> {
                     "Vacature 1",

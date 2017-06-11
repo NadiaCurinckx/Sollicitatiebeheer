@@ -1,5 +1,5 @@
 ﻿using System;
-using Sollicitatiebeheer.Model.Common;
+using Sollicitatiebeheer.Model.Shared;
 
 namespace Sollicitatiebeheer.Model.Vacatures {
     public class Vacature : Entity<Guid> {

@@ -1,5 +1,4 @@
-﻿using System;
-using Sollicitatiebeheer.Model.Vacatures;
+﻿using Sollicitatiebeheer.Model.Vacatures;
 using Xunit;
 
 namespace Sollicitatiebeheer.Model.Tests.Vacatures {

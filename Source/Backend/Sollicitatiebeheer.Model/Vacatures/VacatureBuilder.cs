@@ -1,5 +1,4 @@
 ﻿using System;
-using Sollicitatiebeheer.Model.Common;
 
 namespace Sollicitatiebeheer.Model.Vacatures {
     public class VacatureBuilder {

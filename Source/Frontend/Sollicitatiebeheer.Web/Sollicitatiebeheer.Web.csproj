@@ -28,7 +28,7 @@
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Backend\Sollicitatiebeheer.Data\Sollicitatiebeheer.Data.csproj" />
+    <ProjectReference Include="..\..\Backend\Sollicitatiebeheer.Data.EFCore\Sollicitatiebeheer.Data.EFCore.csproj" />
     <ProjectReference Include="..\..\Backend\Sollicitatiebeheer.Model\Sollicitatiebeheer.Model.csproj" />
   </ItemGroup>
 

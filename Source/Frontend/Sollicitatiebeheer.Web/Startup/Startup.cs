@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using Autofac.Extensions.DependencyInjection;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,19 +7,27 @@ using Microsoft.Extensions.Logging;
 
 namespace Sollicitatiebeheer.Web.Startup {
     public class Startup {
-        private ILoggerFactory LoggerFactory { get; }
+        private readonly ILoggerFactory _loggerFactory;
+        private readonly ILogger<Startup> _logger;
+        private readonly IHostingEnvironment _environment;
 
         public IConfigurationRoot Configuration { get; }
 
         public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory) {
-            LoggerFactory = loggerFactory;
+            _loggerFactory = loggerFactory;
+            _environment = env;
+
+            _logger = _loggerFactory.CreateLogger<Startup>();
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
+                .AddEnvironmentVariables("SOLLICITATIEBEHEER_");
             Configuration = builder.Build();
+
+            var connectionString = Configuration.GetConnectionString("Sollicitatiebeheer");
+            _logger.LogInformation($"Working with connection string '{connectionString}'.");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -31,7 +36,7 @@ namespace Sollicitatiebeheer.Web.Startup {
             services.AddMvc()
                     .AddFeatureFolders()
                     .AddAndConfigureFluentValidation()
-                    .AddAndConfigureFilters(LoggerFactory);
+                    .AddAndConfigureFilters(_loggerFactory);
 
             // Add application services.
             services.AddAndConfigureMediatR();

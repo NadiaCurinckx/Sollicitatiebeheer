@@ -8,7 +8,7 @@ namespace Sollicitatiebeheer.Data.EFCore {
         public DbSet<Vacature> Vacatures { get; set; }
         IQueryable<Vacature> ISollicitatiebeheerContext.Vacatures => Vacatures.AsQueryable();
 
-        public SollicitatiebeheerContext(DbContextOptions options)
+        public SollicitatiebeheerContext(DbContextOptions<SollicitatiebeheerContext> options)
             : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

@@ -4,26 +4,19 @@ using System.Linq;
 using FluentValidation;
 using MediatR;
 using Sollicitatiebeheer.Data.EFCore;
+using Sollicitatiebeheer.Web.Infrastructure.Handlers;
 
 namespace Sollicitatiebeheer.Web.Features.Vacatures {
     public class Index {
-        public class Handler : IRequestHandler<Request, Response> {
-            private readonly ISollicitatiebeheerContext _db;
+        public class Handler : DbRequestHandler<Request, Response> {
+            public Handler(ISollicitatiebeheerContext db) : base(db) { }
 
-            public Handler(ISollicitatiebeheerContext db) {
-                _db = db;
-            }
-
-            public Response Handle(Request message) {
+            public override Response Handle(Request message) {
                 var vacatures = new List<string> {
                     "Vacature 1",
                     "Vacature 2",
                     "Vacature 3"
                 };
-
-                if (String.IsNullOrEmpty(message.SorteerCode)) {
-                    message.SorteerCode = "asc";
-                }
 
                 switch (message.SorteerCode.ToLower().Trim()) {
                     case "asc":

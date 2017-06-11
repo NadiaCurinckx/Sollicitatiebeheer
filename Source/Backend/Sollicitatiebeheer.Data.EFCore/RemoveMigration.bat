@@ -1,1 +1,1 @@
-dotnet ef migrations remove
+dotnet ef migrations remove --startup-project ../Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp

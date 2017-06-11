@@ -22,7 +22,7 @@ Aanmaken, opvolgen en werken met data rond sollicitaties.
 #### EFCore Migrations
 1. Open a command prompt at the location of the ´Sollicitatiebeheer.Data.EFCore´ project 'see: https://github.com/aredfox/Sollicitatiebeheer/tree/master/Source/Backend/Sollicitatiebeheer.Data.EFCore). There you'll find several .BAT files which facilitate the migrations cycle and workarounds needed for EFCore 1.1.
   - *AddMigration.BAT* + *migrationName* will add a new migration with the given name.
-  - *RemoveMigration* will remove the last migration you added.
-  - *UpdateDatabase*.BAT* will update your database to the latest version.
+  - *RemoveMigration.BAT* will remove the last migration you added.
+  - *UpdateDatabase.BAT* will update your database to the latest version.
   - *SeedDatabase.BAT* will seed your database with dummy data if no data is present yet.
     - See Program.cs, which includes the logic for seeding, which you can extend whenever your model changes: https://github.com/aredfox/Sollicitatiebeheer/blob/master/Source/Backend/Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp/Program.cs.

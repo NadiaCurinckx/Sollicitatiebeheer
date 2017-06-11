@@ -5,11 +5,11 @@ namespace Sollicitatiebeheer.Model.Tests.Vacatures {
     public class VacatureValidatorZou {
         [Theory]
         [InlineData("")]
-        [InlineData("   ")]
+        [InlineData("     ")]
         [InlineData(null)]
-        public void FoutMoetenTeruggevenWanneerVacatureNaamLeegIs(string vacatureNaam) {
+        public void FoutMoetenTeruggevenWanneerVacatureNaamLeegIs(string vacatureNummer) {
             // Arrange
-            var vacature = new VacatureBuilder().WithNaam(vacatureNaam).Build();
+            var vacature = new VacatureBuilder().WithVacaturenummer(vacatureNummer).Build();
             var validator = new VacatureValidator();
 
             // Act
@@ -17,7 +17,7 @@ namespace Sollicitatiebeheer.Model.Tests.Vacatures {
 
             // Assert
             Assert.False(actual.IsValid);
-            Assert.Equal(nameof(Vacature.Naam), actual.Errors[0].PropertyName);
+            Assert.Equal(nameof(Vacature.Vacaturenummer), actual.Errors[0].PropertyName);
         }
     }
 }

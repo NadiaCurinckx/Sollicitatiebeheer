@@ -7,17 +7,41 @@
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <h3>Vacatures</h3>
-    <ul>
-        @foreach (var vacature in Model.Vacatures) {
-            <li>@vacature</li>
-        }
-    </ul>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Vacaturenummer</th>
+                <th>Afdeling</th>
+                <th>Functie</th>
+                <th>Omschrijving</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var vacature in Model.Vacatures)
+            {
+                <tr>
+                    <td>@vacature.Vacaturenummer</td>
+                    <td>@vacature.Afdeling</td>
+                    <td>@vacature.Functie</td>
+                    <td>@vacature.Omschrijving</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
 
     <hr />
 
-    @if (Model.SorteerCode == "asc") {
+    @if (Model.SorteerCode == "asc")
+    {
         @Html.ActionLink("Sort descending", "Index", new Index.Request { SorteerCode = "desc" })
-    } else {
+    }
+    else
+    {
         @Html.ActionLink("Sort ascending", "Index", new Index.Request { SorteerCode = "asc" })
     }
 </div>

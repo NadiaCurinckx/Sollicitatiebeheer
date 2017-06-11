@@ -5,6 +5,7 @@ using FluentValidation;
 using MediatR;
 using Sollicitatiebeheer.Data.EFCore;
 using Sollicitatiebeheer.Web.Infrastructure.Handlers;
+using Sollicitatiebeheer.Model.Vacatures;
 
 namespace Sollicitatiebeheer.Web.Features.Vacatures {
     public class Index {
@@ -12,14 +13,14 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures {
             public Handler(ISollicitatiebeheerContext db) : base(db) { }
 
             public override Response Handle(Request message) {
-                var vacatures = _db.Vacatures.Select(v => v.Naam).ToList();
+                var vacatures = _db.Vacatures.ToList();
 
                 switch (message.SorteerCode.ToLower().Trim()) {
                     case "asc":
-                        vacatures = vacatures.OrderBy(v => v).ToList();
+                        vacatures = vacatures.OrderBy(v => v.Vacaturenummer).ToList();
                         break;
                     case "desc":
-                        vacatures = vacatures.OrderByDescending(v => v).ToList();
+                        vacatures = vacatures.OrderByDescending(v => v.Vacaturenummer).ToList();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(message.SorteerCode), $"Sort order {message.SorteerCode} does not exist.");
@@ -58,9 +59,12 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures {
             }
         }
 
-        public class Response : Request {
-            public Response(Request request, List<string> vacatures) : base(request) => Vacatures = vacatures;
-            public List<string> Vacatures { get; }
+        public class Response : Request
+        {
+            public Response(Request request, List<Vacature> vacatures) 
+                : base(request) => Vacatures = vacatures;
+
+            public List<Vacature> Vacatures { get; }
         }
     }
 }

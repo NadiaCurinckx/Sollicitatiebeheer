@@ -2,6 +2,8 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Sollicitatiebeheer.Data.EFCore.Infrastructure.Extensions;
+using Sollicitatiebeheer.Model.Shared;
+using System;
 
 namespace Sollicitatiebeheer.Data.EFCore {
     public class SollicitatiebeheerContext : DbContext, ISollicitatiebeheerContext {
@@ -22,6 +24,10 @@ namespace Sollicitatiebeheer.Data.EFCore {
 
         int ISollicitatiebeheerContext.SaveChanges() {
             return SaveChanges();
+        }
+        void ISollicitatiebeheerContext.Add<TKey>(IEntity<TKey> entity)
+        {
+            Add(entity);
         }
     }
 }

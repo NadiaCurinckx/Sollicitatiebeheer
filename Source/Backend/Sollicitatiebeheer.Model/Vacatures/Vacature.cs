@@ -6,7 +6,7 @@ namespace Sollicitatiebeheer.Model.Vacatures
     public class Vacature : Entity<Guid>
     {
         //Properties
-        public string Omschrijving { get; protected set; }
+        public string Omschrijving { get; set; }
 
         public string Vacaturenummer { get; set; }
 
@@ -15,7 +15,7 @@ namespace Sollicitatiebeheer.Model.Vacatures
         public string Functie { get; set; }
 
         //Constructors
-        protected Vacature() { }
+        public Vacature() { }        
         internal Vacature(Guid id, string vacaturenummer, string omschrijving, string afdeling, string functie)
         {
             Id = id;

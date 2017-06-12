@@ -7,6 +7,7 @@ namespace Sollicitatiebeheer.Data.EFCore {
         IQueryable<Vacature> Vacatures { get; }
 
         void Add<TKey>(IEntity<TKey> entity);
+        void Delete<TKey>(IEntity<TKey> entity);
         int SaveChanges();
     }
 }

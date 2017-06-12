@@ -29,5 +29,9 @@ namespace Sollicitatiebeheer.Data.EFCore {
         {
             Add(entity);
         }
+        void ISollicitatiebeheerContext.Delete<TKey>(IEntity<TKey> entity)
+        {
+            Remove(entity);
+        }
     }
 }

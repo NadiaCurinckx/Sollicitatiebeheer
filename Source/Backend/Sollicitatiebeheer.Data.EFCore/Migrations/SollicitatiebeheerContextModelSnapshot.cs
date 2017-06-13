@@ -26,6 +26,8 @@ namespace Sollicitatiebeheer.Data.EFCore.Migrations
 
                     b.Property<string>("Functie");
 
+                    b.Property<bool>("IsGearchiveerd");
+
                     b.Property<string>("Omschrijving");
 
                     b.Property<string>("Vacaturenummer");

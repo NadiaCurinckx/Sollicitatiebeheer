@@ -9,7 +9,7 @@ namespace Sollicitatiebeheer.Data.EFCore {
     public class SollicitatiebeheerContext : DbContext, ISollicitatiebeheerContext {
 
         public DbSet<Vacature> Vacatures { get; set; }
-        IQueryable<Vacature> ISollicitatiebeheerContext.Vacatures => Vacatures.AsQueryable();
+        IQueryable<Vacature> ISollicitatiebeheerContext.Vacatures => Vacatures.Where(v => !v.IsGearchiveerd).AsQueryable();
 
         public SollicitatiebeheerContext(DbContextOptions<SollicitatiebeheerContext> options)
             : base(options) { }
@@ -22,7 +22,8 @@ namespace Sollicitatiebeheer.Data.EFCore {
             });
         }
 
-        int ISollicitatiebeheerContext.SaveChanges() {
+        int ISollicitatiebeheerContext.SaveChanges()
+        {
             return SaveChanges();
         }
         void ISollicitatiebeheerContext.Add<TKey>(IEntity<TKey> entity)
@@ -31,7 +32,14 @@ namespace Sollicitatiebeheer.Data.EFCore {
         }
         void ISollicitatiebeheerContext.Delete<TKey>(IEntity<TKey> entity)
         {
-            Remove(entity);
+            if(entity is IArchiveerbaar)
+            {
+                ((IArchiveerbaar)entity).IsGearchiveerd = true;
+            }
+            else
+            {
+                Remove(entity);
+            }            
         }
     }
 }

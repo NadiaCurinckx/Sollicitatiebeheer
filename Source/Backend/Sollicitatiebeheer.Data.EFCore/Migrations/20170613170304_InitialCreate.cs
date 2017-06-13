@@ -13,7 +13,11 @@ namespace Sollicitatiebeheer.Data.EFCore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
-                    Naam = table.Column<string>(nullable: true)
+                    Afdeling = table.Column<string>(nullable: true),
+                    Functie = table.Column<string>(nullable: true),
+                    IsGearchiveerd = table.Column<bool>(nullable: false),
+                    Omschrijving = table.Column<string>(nullable: true),
+                    Vacaturenummer = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

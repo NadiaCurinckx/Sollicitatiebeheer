@@ -3,8 +3,8 @@ using Sollicitatiebeheer.Model.Shared;
 
 namespace Sollicitatiebeheer.Model.Vacatures
 {
-    public class Vacature : Entity<Guid>
-    {
+    public class Vacature : ArchiveerbareEntity<Guid>
+    {        
         //Properties
         public string Omschrijving { get; set; }
 

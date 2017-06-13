@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Sollicitatiebeheer.Model\Sollicitatiebeheer.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

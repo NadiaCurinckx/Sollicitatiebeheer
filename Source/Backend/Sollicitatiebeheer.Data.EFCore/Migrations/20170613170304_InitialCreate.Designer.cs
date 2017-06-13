@@ -8,7 +8,7 @@ using Sollicitatiebeheer.Data.EFCore;
 namespace Sollicitatiebeheer.Data.EFCore.Migrations
 {
     [DbContext(typeof(SollicitatiebeheerContext))]
-    [Migration("20170611162133_InitialCreate")]
+    [Migration("20170613170304_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,15 @@ namespace Sollicitatiebeheer.Data.EFCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<string>("Naam");
+                    b.Property<string>("Afdeling");
+
+                    b.Property<string>("Functie");
+
+                    b.Property<bool>("IsGearchiveerd");
+
+                    b.Property<string>("Omschrijving");
+
+                    b.Property<string>("Vacaturenummer");
 
                     b.HasKey("Id");
 

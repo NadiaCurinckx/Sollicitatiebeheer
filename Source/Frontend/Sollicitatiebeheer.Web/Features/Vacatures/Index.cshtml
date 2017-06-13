@@ -30,6 +30,7 @@
                     <td>@vacature.Afdeling</td>
                     <td>@vacature.Functie</td>
                     <td>@vacature.Omschrijving</td>
+                    <td><a href="@Url.Action("Verwijderen", "Vacatures", new Verwijderen.Request { Id = vacature.Id })" class="btn btn-sm btn-danger" title="Verwijderen"><i class="glyphicon glyphicon-trash"></i></a></td>
                 </tr>
             }
         </tbody>

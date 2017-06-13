@@ -35,5 +35,13 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures {
             var model = await _mediator.Send(request);
             return RedirectToAction("index");
         }
+
+        [HttpGet]
+        [Route("verwijderen")]
+        public async Task<IActionResult> Verwijderen(Verwijderen.Request request)
+        {
+            var model = await _mediator.Send(request);
+            return RedirectToAction("index");
+        }
     }
 }

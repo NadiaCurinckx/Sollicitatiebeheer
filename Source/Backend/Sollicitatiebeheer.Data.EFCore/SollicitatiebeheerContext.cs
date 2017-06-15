@@ -30,6 +30,11 @@ namespace Sollicitatiebeheer.Data.EFCore {
         {
             Add(entity);
         }
+        void ISollicitatiebeheerContext.Update<TKey>(IEntity<TKey> entity)
+        {
+            Entry(entity).State = EntityState.Modified;
+            Update(entity);
+        }
         void ISollicitatiebeheerContext.Delete<TKey>(IEntity<TKey> entity)
         {
             if(entity is IArchiveerbaar)

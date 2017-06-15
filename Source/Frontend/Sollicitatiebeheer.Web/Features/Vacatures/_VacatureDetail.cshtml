@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@using Sollicitatiebeheer.Model.Vacatures
+@model Vacature
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Vacature toevoegen</h2>
+@using (Html.BeginForm("Bewaren", "Vacatures", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="row row-margin">
+        @Html.LabelFor(x => x.Vacaturenummer)
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
+            @Html.TextBoxFor(x => x.Vacaturenummer, new { Class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row row-margin">
+        @Html.LabelFor(x => x.Afdeling)
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
+            @Html.TextBoxFor(x => x.Afdeling, new { Class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row row-margin">
+        @Html.LabelFor(x => x.Functie)
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
+            @Html.TextBoxFor(x => x.Functie, new { Class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row row-margin">
+        @Html.LabelFor(x => x.Omschrijving)
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
+            @Html.TextBoxFor(x => x.Omschrijving, new { Class = "form-control" })
+        </div>
+    </div>   
+
+    <p></p>
+
+    <div class="row row-margin">
+        <button type="submit" class="btn btn-success" aria-label="Left Align">
+            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+            Opslaan
+        </button>
+    </div>
+}

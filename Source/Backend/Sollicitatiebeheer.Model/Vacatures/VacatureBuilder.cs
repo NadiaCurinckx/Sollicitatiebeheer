@@ -6,7 +6,7 @@ namespace Sollicitatiebeheer.Model.Vacatures
     {
 
         //Properties
-        private Guid _id;
+        private Guid _id = Guid.Empty;
         private string _vacaturenummer;
         private string _omschrijving;
         private string _afdeling;

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Sollicitatiebeheer.Model.Vacatures;
 
 namespace Sollicitatiebeheer.Web.Features.Vacatures {
 
@@ -28,11 +29,19 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures {
             return View(model);
         }
 
-        [HttpPost]
-        [Route("bewaren")]
-        public async Task<IActionResult> Bewaren(Bewaren.Request request)
+        [HttpGet]
+        [Route("bewerken")]
+        public async Task<IActionResult> Bewerken(Bewerken.Request request)
         {
             var model = await _mediator.Send(request);
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("bewaren")]
+        public async Task<IActionResult> Bewaren(Vacature request)
+        {
+            var model = await _mediator.Send(new Bewaren.Request { Vacature = request });
             return RedirectToAction("index");
         }
 

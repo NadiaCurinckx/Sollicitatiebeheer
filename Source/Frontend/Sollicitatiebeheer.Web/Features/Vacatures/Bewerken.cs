@@ -1,12 +1,13 @@
-﻿using System;
-using MediatR;
-using Sollicitatiebeheer.Data.EFCore;
-using Sollicitatiebeheer.Model.Vacatures;
+﻿using MediatR;
 using Sollicitatiebeheer.Web.Infrastructure.Handlers;
+using System;
+using Sollicitatiebeheer.Data.EFCore;
+using System.Linq;
+using Sollicitatiebeheer.Model.Vacatures;
 
 namespace Sollicitatiebeheer.Web.Features.Vacatures
 {
-    public class Bewaren
+    public class Bewerken
     {
         public class Handler : DbRequestHandler<Request, Response>
         {
@@ -16,28 +17,22 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures
 
             public override Response Handle(Request message)
             {
-                var vacature = message.Vacature;
-
-                if(vacature.Id.Equals(Guid.Empty))
+                var vacature = _db.Vacatures.SingleOrDefault(v => v.Id == message.Id);
+                
+                return new Response
                 {
-                    _db.Add(vacature);                    
-                } else
-                {
-                    _db.Update(vacature);
-                }
-
-                _db.SaveChanges();
-
-                return new Response();
+                    Vacature = vacature
+                };
             }
         }
 
         public class Request : IRequest<Response>
-        {            
-            public Vacature Vacature { get; set; }
+        {
+            public Guid Id { get; set; }
         }
         public class Response
         {
-        }        
+            public Vacature Vacature { get; set; }
+        }
     }
 }

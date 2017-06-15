@@ -9,7 +9,7 @@ namespace Sollicitatiebeheer.Model.Tests.Vacatures {
         [InlineData(null)]
         public void FoutMoetenTeruggevenWanneerVacatureNaamLeegIs(string vacatureNummer) {
             // Arrange
-            var vacature = new VacatureBuilder().WithVacaturenummer(vacatureNummer).Build();
+            var vacature = new VacatureBuilder().MetVacaturenummer(vacatureNummer).Build();
             var validator = new VacatureValidator();
 
             // Act

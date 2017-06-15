@@ -38,9 +38,9 @@ namespace Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp
         {
             Console.WriteLine("Creating vacatures...");
             db.Vacatures.AddRange(
-                new VacatureBuilder().WithVacaturenummer("56063108").WithAfdeling("OOOC Potgieter").WithFunctie("Crisisbegeleider").WithOmschrijving("ipv Thalissa Tilemans").Build(),
-                new VacatureBuilder().WithVacaturenummer("56112374").WithAfdeling("OOOC Jacob Jordaens").WithFunctie("Begeleider").WithOmschrijving("ipv Ellen De Maere").Build(),
-                new VacatureBuilder().WithVacaturenummer("56135852").WithAfdeling("Technische dienst").WithFunctie("Onderhoudsmedewerker").WithOmschrijving("verv Klaus").Build()
+                new VacatureBuilder().MetVacaturenummer("56063108").MetAfdeling("OOOC Potgieter").MetFunctie("Crisisbegeleider").MetOmschrijving("ipv Thalissa Tilemans").Build(),
+                new VacatureBuilder().MetVacaturenummer("56112374").MetAfdeling("OOOC Jacob Jordaens").MetFunctie("Begeleider").MetOmschrijving("ipv Ellen De Maere").Build(),
+                new VacatureBuilder().MetVacaturenummer("56135852").MetAfdeling("Technische dienst").MetFunctie("Onderhoudsmedewerker").MetOmschrijving("verv Klaus").Build()
                             );
             db.SaveChanges();
             Console.WriteLine("Vacatures created.");

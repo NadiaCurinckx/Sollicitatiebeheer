@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Sollicitatiebeheer.Data.EFCore.Infrastructure.Extensions;
 using Sollicitatiebeheer.Model.Shared;
 using System;
+using System.Collections.Generic;
 
 namespace Sollicitatiebeheer.Data.EFCore {
     public class SollicitatiebeheerContext : DbContext, ISollicitatiebeheerContext {
@@ -30,6 +31,10 @@ namespace Sollicitatiebeheer.Data.EFCore {
         {
             Add(entity);
         }
+        void ISollicitatiebeheerContext.AddRange<TKey>(IEnumerable<IEntity<TKey>> entities)
+        {
+            AddRange(entities);
+        }
         void ISollicitatiebeheerContext.Update<TKey>(IEntity<TKey> entity)
         {
             Entry(entity).State = EntityState.Modified;
@@ -45,6 +50,6 @@ namespace Sollicitatiebeheer.Data.EFCore {
             {
                 Remove(entity);
             }            
-        }
+        }        
     }
 }

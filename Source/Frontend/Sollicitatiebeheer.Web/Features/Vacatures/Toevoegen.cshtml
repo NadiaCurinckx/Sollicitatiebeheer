@@ -7,9 +7,7 @@
 
 <h2>Vacature toevoegen</h2>
 @using (Html.BeginForm("Bewaren", "Vacatures", FormMethod.Post))
-{
-    @Html.HiddenFor(x => x.BewaarMethode)
-
+{    
     <div class="row row-margin">
         @Html.LabelFor(x => x.Vacature.Vacaturenummer)
         <div class="input-group">

@@ -12,8 +12,7 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures
             {
                 return new Response
                 {
-                    Vacature = new VacatureBuilder().Build(),
-                    BewaarMethode = Bewaren.BewaarMethode.Nieuw
+                    Vacature = new VacatureBuilder().Build()                    
                 };
             }
         }
@@ -24,8 +23,7 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures
         }
         public class Response
         {
-            public Vacature Vacature { get; set; }
-            public Bewaren.BewaarMethode BewaarMethode { get; set; }
+            public Vacature Vacature { get; set; }            
         }
     }
 }

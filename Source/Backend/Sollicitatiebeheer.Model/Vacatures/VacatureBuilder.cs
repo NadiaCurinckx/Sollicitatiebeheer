@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Sollicitatiebeheer.Model.Shared;
+using System;
 
 namespace Sollicitatiebeheer.Model.Vacatures
 {
     public class VacatureBuilder
     {
 
-        //Properties
+        //Properties     
         private Guid _id = Guid.Empty;
         private bool _isGearchiveerd;
         private string _vacaturenummer;

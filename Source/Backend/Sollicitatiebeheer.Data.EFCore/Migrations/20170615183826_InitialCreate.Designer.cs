@@ -8,7 +8,7 @@ using Sollicitatiebeheer.Data.EFCore;
 namespace Sollicitatiebeheer.Data.EFCore.Migrations
 {
     [DbContext(typeof(SollicitatiebeheerContext))]
-    [Migration("20170613170304_InitialCreate")]
+    [Migration("20170615183826_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,6 +16,18 @@ namespace Sollicitatiebeheer.Data.EFCore.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Sollicitatiebeheer.Model.Afdelingen.Afdeling", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Naam");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Afdelingen");
+                });
 
             modelBuilder.Entity("Sollicitatiebeheer.Model.Vacatures.Vacature", b =>
                 {

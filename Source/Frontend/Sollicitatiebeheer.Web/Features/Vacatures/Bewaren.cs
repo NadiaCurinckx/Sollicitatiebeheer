@@ -1,28 +1,24 @@
 ﻿using System;
 using MediatR;
 using Sollicitatiebeheer.Data.EFCore;
+using Sollicitatiebeheer.Model.Afdelingen;
 using Sollicitatiebeheer.Model.Vacatures;
 using Sollicitatiebeheer.Web.Infrastructure.Handlers;
 
-namespace Sollicitatiebeheer.Web.Features.Vacatures
-{
-    public class Bewaren
-    {
-        public class Handler : DbRequestHandler<Request, Response>
-        {
-            public Handler(ISollicitatiebeheerContext sollicitatiebeheerContext) : base(sollicitatiebeheerContext)
-            {
+namespace Sollicitatiebeheer.Web.Features.Vacatures {
+    public class Bewaren {
+        public class Handler : DbRequestHandler<Request, Response> {
+            public Handler(ISollicitatiebeheerContext sollicitatiebeheerContext) : base(sollicitatiebeheerContext) {
             }
 
-            public override Response Handle(Request message)
-            {
+            public override Response Handle(Request message) {
                 var vacature = message.Vacature;
 
-                if(vacature.Id.Equals(Guid.Empty))
-                {
-                    _db.Add(vacature);                    
-                } else
-                {
+                vacature.AfdelingId = message.AfdelingId;
+
+                if (vacature.Id.Equals(Guid.Empty)) {
+                    _db.Add(vacature);
+                } else {
                     _db.Update(vacature);
                 }
 
@@ -32,12 +28,11 @@ namespace Sollicitatiebeheer.Web.Features.Vacatures
             }
         }
 
-        public class Request : IRequest<Response>
-        {            
+        public class Request : IRequest<Response> {
             public Vacature Vacature { get; set; }
+            public int AfdelingId { get; set; }
         }
-        public class Response
-        {
-        }        
+        public class Response {
+        }
     }
 }

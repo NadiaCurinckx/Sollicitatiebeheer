@@ -24,11 +24,10 @@
 
         <tbody>
 
-            @foreach (var vacature in Model.Vacatures)
-            {
+            @foreach (var vacature in Model.Vacatures) {
                 <tr>
                     <td>@vacature.Vacaturenummer</td>
-                    <td>@vacature.Afdeling</td>
+                    <td>@vacature.Afdeling.Naam</td>
                     <td>@vacature.Functie</td>
                     <td>@vacature.Omschrijving</td>
                     <td><a href="@Url.Action("Bewerken", "Vacatures", new Bewerken.Request { Id = vacature.Id })" class="btn btn-sm btn-default" title="Bewerken"><i class="glyphicon glyphicon-pencil"></i></a></td>
@@ -41,12 +40,9 @@
 
     <hr />
 
-    @if (Model.SorteerCode == "asc")
-    {
+    @if (Model.SorteerCode == "asc") {
         @Html.ActionLink("Sort descending", "Index", new Index.Request { SorteerCode = "desc" })
-    }
-    else
-    {
+    } else {
         @Html.ActionLink("Sort ascending", "Index", new Index.Request { SorteerCode = "asc" })
     }
 </div>

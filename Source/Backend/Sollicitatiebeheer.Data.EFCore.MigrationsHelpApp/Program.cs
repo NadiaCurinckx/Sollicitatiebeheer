@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Sollicitatiebeheer.Model.Afdelingen;
 using Sollicitatiebeheer.Model.Vacatures;
 
 namespace Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp {
@@ -19,23 +21,40 @@ namespace Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp {
                 Console.WriteLine("Seeding...");
 
                 using (var db = MaakContext()) {
-                    if (!db.Vacatures.Any()) {
-                        MaakVacatures(db);
+
+                    if (!db.Afdelingen.Any()) {
+                        MaakAfdelingen(db.Afdelingen);
                     }
+
+                    if (!db.Vacatures.Any()) {
+                        MaakVacatures(db.Vacatures);
+                    }
+
+                    ((ISollicitatiebeheerContext)db).SaveChanges();
                 }
 
                 Console.WriteLine("Seeding done.");
             }
         }
 
-        private static void MaakVacatures(SollicitatiebeheerContext db) {
-            Console.WriteLine("Vacatures maken...");
-            db.Vacatures.AddRange(
-                new VacatureBuilder().MetVacaturenummer("56063108").MetAfdeling("OOOC Potgieter").MetFunctie("Crisisbegeleider").MetOmschrijving("ipv Thalissa Tilemans").Build(),
-                new VacatureBuilder().MetVacaturenummer("56112374").MetAfdeling("OOOC Jacob Jordaens").MetFunctie("Begeleider").MetOmschrijving("ipv Ellen De Maere").Build(),
-                new VacatureBuilder().MetVacaturenummer("56135852").MetAfdeling("Technische dienst").MetFunctie("Onderhoudsmedewerker").MetOmschrijving("verv Klaus").Build()
+        private static void MaakAfdelingen(DbSet<Afdeling> db) {
+            Console.WriteLine("Afdelingen maken...");
+            db.AddRange(
+                new AfdelingBuilder().MetNaam("OOOC Potgieter").Build(),
+                new AfdelingBuilder().MetNaam("OOOC Jacob Jordaens").Build(),
+                new AfdelingBuilder().MetNaam("Technische dienst").Build(),
+                new AfdelingBuilder().MetNaam("Personeelsdienst").Build()
             );
-            db.SaveChanges();
+            Console.WriteLine("Afdelingen aangemaakt.");
+        }
+
+        private static void MaakVacatures(DbSet<Vacature> db) {
+            Console.WriteLine("Vacatures maken...");
+            db.AddRange(
+                new VacatureBuilder().MetVacaturenummer("56063108").MetAfdelingId(1).MetFunctie("Crisisbegeleider").MetOmschrijving("ipv Thalissa Tilemans").Build(),
+                new VacatureBuilder().MetVacaturenummer("56112374").MetAfdelingId(2).MetFunctie("Begeleider").MetOmschrijving("ipv Ellen De Maere").Build(),
+                new VacatureBuilder().MetVacaturenummer("56135852").MetAfdelingId(3).MetFunctie("Onderhoudsmedewerker").MetOmschrijving("verv Klaus").Build()
+            );
             Console.WriteLine("Vacatures aangemaakt.");
         }
 

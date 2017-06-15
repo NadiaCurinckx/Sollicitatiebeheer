@@ -8,9 +8,10 @@ using Sollicitatiebeheer.Data.EFCore;
 namespace Sollicitatiebeheer.Data.EFCore.Migrations
 {
     [DbContext(typeof(SollicitatiebeheerContext))]
-    partial class SollicitatiebeheerContextModelSnapshot : ModelSnapshot
+    [Migration("20170615225336_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

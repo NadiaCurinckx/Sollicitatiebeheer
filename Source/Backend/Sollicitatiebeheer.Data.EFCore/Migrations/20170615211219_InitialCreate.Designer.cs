@@ -8,7 +8,7 @@ using Sollicitatiebeheer.Data.EFCore;
 namespace Sollicitatiebeheer.Data.EFCore.Migrations
 {
     [DbContext(typeof(SollicitatiebeheerContext))]
-    [Migration("20170613170304_InitialCreate")]
+    [Migration("20170615211219_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -15,7 +15,10 @@ namespace Sollicitatiebeheer.Data.EFCore.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Naam = table.Column<string>(nullable: true)
+                    IsGearchiveerd = table.Column<bool>(nullable: false),
+                    Naam = table.Column<string>(nullable: true),
+                    TijdstipAangemaaktUtc = table.Column<DateTime>(nullable: false),
+                    TijdstipLaatstGewijzigdUtc = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,25 +30,38 @@ namespace Sollicitatiebeheer.Data.EFCore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
-                    Afdeling = table.Column<string>(nullable: true),
+                    AfdelingId = table.Column<int>(nullable: false),
                     Functie = table.Column<string>(nullable: true),
                     IsGearchiveerd = table.Column<bool>(nullable: false),
                     Omschrijving = table.Column<string>(nullable: true),
+                    TijdstipAangemaaktUtc = table.Column<DateTime>(nullable: false),
+                    TijdstipLaatstGewijzigdUtc = table.Column<DateTime>(nullable: false),
                     Vacaturenummer = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vacatures", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Vacatures_Afdelingen_AfdelingId",
+                        column: x => x.AfdelingId,
+                        principalTable: "Afdelingen",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vacatures_AfdelingId",
+                table: "Vacatures",
+                column: "AfdelingId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Afdelingen");
+                name: "Vacatures");
 
             migrationBuilder.DropTable(
-                name: "Vacatures");
+                name: "Afdelingen");
         }
     }
 }

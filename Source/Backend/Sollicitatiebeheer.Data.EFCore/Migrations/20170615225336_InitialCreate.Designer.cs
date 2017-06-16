@@ -8,7 +8,7 @@ using Sollicitatiebeheer.Data.EFCore;
 namespace Sollicitatiebeheer.Data.EFCore.Migrations
 {
     [DbContext(typeof(SollicitatiebeheerContext))]
-    [Migration("20170615183826_InitialCreate")]
+    [Migration("20170615225336_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,9 +20,16 @@ namespace Sollicitatiebeheer.Data.EFCore.Migrations
             modelBuilder.Entity("Sollicitatiebeheer.Model.Afdelingen.Afdeling", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsGearchiveerd");
 
                     b.Property<string>("Naam");
+
+                    b.Property<DateTime>("TijdstipAangemaaktUtc");
+
+                    b.Property<DateTime>("TijdstipLaatstGewijzigdUtc");
 
                     b.HasKey("Id");
 
@@ -35,7 +42,7 @@ namespace Sollicitatiebeheer.Data.EFCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<string>("Afdeling");
+                    b.Property<int>("AfdelingId");
 
                     b.Property<string>("Functie");
 
@@ -43,11 +50,25 @@ namespace Sollicitatiebeheer.Data.EFCore.Migrations
 
                     b.Property<string>("Omschrijving");
 
+                    b.Property<DateTime>("TijdstipAangemaaktUtc");
+
+                    b.Property<DateTime>("TijdstipLaatstGewijzigdUtc");
+
                     b.Property<string>("Vacaturenummer");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AfdelingId");
+
                     b.ToTable("Vacatures");
+                });
+
+            modelBuilder.Entity("Sollicitatiebeheer.Model.Vacatures.Vacature", b =>
+                {
+                    b.HasOne("Sollicitatiebeheer.Model.Afdelingen.Afdeling", "Afdeling")
+                        .WithMany()
+                        .HasForeignKey("AfdelingId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

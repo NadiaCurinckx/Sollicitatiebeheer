@@ -1,46 +1,48 @@
-﻿@using Microsoft.AspNetCore.Mvc.Rendering
-@using Sollicitatiebeheer.Model.Vacatures
-@model Vacature
+﻿@using System.Linq
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using Sollicitatiebeheer.Web.Features.Vacatures
+@model VacatureDetail
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <h2>Vacature toevoegen</h2>
-@using (Html.BeginForm("Bewaren", "Vacatures", FormMethod.Post))
-{
-    @Html.HiddenFor(x => x.Id)
+@using (Html.BeginForm("Bewaren", "Vacatures", FormMethod.Post)) {
+    @Html.HiddenFor(x => x.Vacature.Id)
+    @Html.HiddenFor(x => x.Vacature.TijdstipAangemaaktUtc)
+    @Html.HiddenFor(x => x.Vacature.TijdstipLaatstGewijzigdUtc)
 
     <div class="row row-margin">
-        @Html.LabelFor(x => x.Vacaturenummer)
+        @Html.LabelFor(x => x.Vacature.Vacaturenummer)
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-            @Html.TextBoxFor(x => x.Vacaturenummer, new { Class = "form-control" })
+            @Html.TextBoxFor(x => x.Vacature.Vacaturenummer, new { Class = "form-control" })
         </div>
     </div>
 
     <div class="row row-margin">
-        @Html.LabelFor(x => x.Afdeling)
+        @Html.LabelFor(x => x.Vacature.Afdeling)
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-            @Html.TextBoxFor(x => x.Afdeling, new { Class = "form-control" })
+            @Html.DropDownListFor(x => x.GeselecteerdeAfdeling, Model.Afdelingen.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Naam }).ToList())
         </div>
     </div>
 
     <div class="row row-margin">
-        @Html.LabelFor(x => x.Functie)
+        @Html.LabelFor(x => x.Vacature.Functie)
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-            @Html.TextBoxFor(x => x.Functie, new { Class = "form-control" })
+            @Html.TextBoxFor(x => x.Vacature.Functie, new { Class = "form-control" })
         </div>
     </div>
 
     <div class="row row-margin">
-        @Html.LabelFor(x => x.Omschrijving)
+        @Html.LabelFor(x => x.Vacature.Omschrijving)
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-            @Html.TextBoxFor(x => x.Omschrijving, new { Class = "form-control" })
+            @Html.TextBoxFor(x => x.Vacature.Omschrijving, new { Class = "form-control" })
         </div>
-    </div>   
+    </div>
 
     <p></p>
 

@@ -26,3 +26,4 @@ Aanmaken, opvolgen en werken met data rond sollicitaties.
   - *UpdateDatabase.BAT* will update your database to the latest version.
   - *SeedDatabase.BAT* will seed your database with dummy data if no data is present yet.
     - See Program.cs, which includes the logic for seeding, which you can extend whenever your model changes: https://github.com/aredfox/Sollicitatiebeheer/blob/master/Source/Backend/Sollicitatiebeheer.Data.EFCore.MigrationsHelpApp/Program.cs.
+  - ***ResetMigrations**.bat* will remove all migrations, initiaite a *new migration* with name 'InitialCreate', *drop* the *database* and create + seed a new one.

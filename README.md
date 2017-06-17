@@ -2,6 +2,10 @@
 Aanmaken, opvolgen en werken met data rond sollicitaties.
 
 ## How to run?
+## Prerequisities
+1. NPM Task Runner for VS2015+ https://marketplace.visualstudio.com/items?itemName=MadsKristensen.NPMTaskRunner 
+2. Please check that these settings apply: https://blogs.msdn.microsoft.com/webdev/2015/03/19/customize-external-web-tools-in-visual-studio-2015/
+## To business
 1. Git Clone & Open Visual Studio
 ### Database Settings
 #### Connection String
